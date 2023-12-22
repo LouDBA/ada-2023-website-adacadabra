@@ -67,85 +67,244 @@
             <article class="post">
                 <h1>Introduction</h1>
                 <p>
-                    Ever wondered about the dynamics of channel popularity on YouTube?
-                    Our study aims to explore the role of collaboration in boosting channel growth and revealing the intricate network of YouTube creators. Our goal is to offer a perspective on YouTube's collaborative landscape, equipping creators with insights to foster collaborations that align with evolving viewer trends.
-                    Leveraging the 'YouNiverse' dataset, we will analyze video metadata and descriptions to find collaborations and channel mentions. We will use viewer engagement metrics like views and likes to gauge the immediate and lasting impacts of these collaborations. What is the difference before/after collaborations? We are interested in whether collaborations spur growth and, if so, whether partnering with top channels in the same or different categories is more beneficial.
-                </p>
+                    In YouTube's digital landscape, collaborations between creators are more than just interactions; they are a force that shapes the platform's community of players. While viewers scroll endlessly through content, behind the scenes, YouTubers join forces and create alliances that can propel channels into the spotlight. But what actually happens when creators collaborate? Does it lead to a rise in popularity, or is it just another strategy lost in the noise of the internet? This data story gives an insight into the success model in the ever-changing world of YouTube gaming.
+                </p>  
+
+                <h2>Gaming : A Window into YouTube Collaborations</h2>
                 <p>
-                    Our study period is 2016-2019. We are focusing on categories like gaming, how-to-style, and people and blogs, where real interactions and collaborations are most evident.
+                    The data we used is based on the Youniverse dataset. Since the dataset is too large for our tools to give a realistic representation of the whole of YouTube, we have limited our scope to the "Gaming" category. This category is a good subset to study the impact of collaborations, as most Gaming Youtubers engage in collaborative gameplay, teamwork and friendly competition.
                 </p>
                 <div>    
+                    <iframe width="700" height="400" frameborder="0" scrolling="no" src="/ada-2023-website-adacadabra/assets/images2/Total_collaborators.html"></iframe>
+                </div>  
+                <p>
+                    Collaborations within a video were identified by examining the video description and extracting the usual types of chain links mentioned.
+                </p>
+                <p>
+                    The approach of this article is to obtain an initial overview of network connectivity in the gaming category, then to carry out a general study of the impact of collaborations on the popularity of YouTubers and finally to examine more specifically the impact on a subset of channels.
+                </p>
+                
+            </article>
+        </main>
+
+
+
+        <main id="content" class="content" role="main">
+            <article class="post">
+                
+                <h1> The Connectivity Web: Mapping Collaborations in Gaming </h1>
+                <p>
+                    In our exploration of the YouTube gaming universe, we aim to decode the vast network that exists between the various channels. Among the collaborations identified, our survey reveals a network of over 160,000 connections. This network represents a complex structure of relationships.
+                </p>
+                <p>
+                    Through bootstrapping, we have distilled a representative sample of these interactions. The closer a channel (data point) is to the center, the more it collaborates, and gets collaborated with.  These central nodes thus represent influential communities.
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/Bootstrapped_network.png" alt="Image (input)" width = "700" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+
+                <p>
+                    Since we will focus on the on the Gaming community, is important to distinguish between collaborations done within members of it, and members of other communities. Indeed, Gaming channels participate in a broader network of influence and interaction. For instance, there is a large number of collaborations done with Musicians, which suggest a strong relationship between these two communities. This result is not surprising as Gaming videos often includes music.
+                </p> 
+                
+                <div>    
                     <iframe width="600" height="400" frameborder="0" scrolling="no" src="/ada-2023-website-adacadabra/assets/images2/Collaborations_Proportion.html"></iframe>
-                </div>            
+                </div> 
+                <p>
+                    To better describe the world of gaming, we must thus evaluate its network by filtering out those “outsider” connections. This produces the following network, composed of interactions within the Gaming community only.
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/collaboration_withing_gaming.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    As we can see, the network is somewhat different from the one with connections with all categories. It is more connected, and the hubs are not as concentrated as the original one. This shows that, within the gaming community, channels are better at connecting between different parts of the network : it is easier to move around and get introduced to different subcommunities. 
+                </p>
+                <p>
+                    Despite that, it is clear that the more a channel is connected with (that is, the closest it is to the center), the more impactful it might be. To quantify this influence, we will thus perform an extended analysis of the network, using centrality measures - critical metrics in network theory that help identify the most influential nodes within a network. Namely, we refer to:
+                    <ul>
+                        <li>Degree Centrality as the number of connections a node has. This offers a basic yet insightful view of a channel’s activity and potential influence through contributions. </li>
+                        <li>Betweenness Centrality as the number of times a node acts as a bridge along the shortest path between two other nodes. This indicates its role as a crucial connector or 'gatekeeper' within the network. </li>
+                        <li>Closeness Centrality as how close a node is to all other nodes in the network. This indicates how quickly a channel can access or spread information (=influence) through its network.</li>
+                    </ul>
+                    By isolating the channels with the highest betweenness centrality, we can determine the influence of the gatekeepers and compare them to randomly selected non-gatekeepers. This comparison will likely reveal stark differences in connectivity and influence, reinforcing the notion that not all channels wield the same level of influence within the network. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/Showing_network.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    The red network graph shows that, without these "gatekeeping" channels, the gaming community would have done little to no collaborations, making it a much more isolated place. Furthermore, it is easy to see that most of the gatekeepers are connected between themselves, reducing the individual influence a single channel can have, but increasing theirs as a group.  
+                </p>
+                <p>
+                    Finally, it is important to determine if there is a link between a channel’s popularity, measured by its number of subscribers, and the number of collaborations it makes. To answer this, we compute the average number of subscribers for the channels with the 100 highest degrees of centrality, and for a random sample amongst the rest of the channels from the broader network.
+                </p>
+            
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/Average_sub.png" width = "450" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    As we can see, there appears to be positive correlation between having a high number of collaborations and having a high subscriber count, making such channels more influential. This will be explored more in detail in the next part of the article.
+                </p>
+                <p>
+                    To summarize this part of the study, we have done a detailed analysis of the impact of collaborations throughout the Gaming community of Youtube. We find that this community is far more interconnected and yet easy to move around in through collaborations. It is less isolated and the barrier to entry in the network is more spread out, as individual gatekeepers have less influence. Finally, we notice a positive correlation between the number of collaborations and the number of subscribers, suggesting that collaborating might increase popularity.
+                </p>
+                
+                
+
             </article>
         </main>
 
         <main id="content" class="content" role="main">
             <article class="post">
                 
-                <h1> Network Analysis </h1>
-
-                <h2>Connection graph</h2>
-
+                <h1> Collaboration and Popularity: A Gaming Perspective </h1>
                 <p>
-                    bla
+                    We are now trying to find the impact of collaborations on a channel's popularity. We previously considered the number of subscribers as a popularity metric. In this part we will use the mean number of views instead, as it provides a quantitative and easily interpretable measure of the channel's overall viewer engagement, capturing the average level of interest across its entire video content. Indeed, the number of subscribers is less prone to decrease over time, even if a channel becomes less popular. 
                 </p>
 
                 <p>
-                    bla
-                </p>
-
-                <h2>Influence</h2>
-                <p>
-                    bla
-                </p>
-
-                <p>
-                    bla
+                    The following graph justifies this choice, as we can see that similar (mean) view counts can be obtained by channels spanning over a wide range of subscriber counts.
                 </p>
                 
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/lou2.png" width = "400" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
 
+                <p>
+                    We can now study the impact of collaborations by plotting the average number of views versus the average number of collaborations per video.
+                </p>
+                
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/lou1.png" width = "650" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+
+                <p>
+                    We can see that most Youtubers don't do any collaborations, or only a few. A few lines appear for whole numbers of collaborations. It can be interpreted in different ways : 
+                    <ul>
+                        <li>Collaborations are not evenly distributed among YouTubers. Many creators may prefer to work independently or may find it logistically challenging to collaborate frequently.</li>
+                        <li>The dataset studied may not contain enough videos for each channel.</li>
+                    </ul>
+                </p>
+                <p>
+                    The number of collaborations does not seems to have an impact on the number of views. By performing a Welch t-test to compare the views between people that never collaborate and people who do, we find that the difference is indeed not significant.                
+                </p>
+                <p>
+                    However, we can assume that collaborations don't have the same impact on channels of different sizes. To investigate this hypothesis, we can separate the dataset into 10 groups of YouTubers, using their average number of views and perform the same analysis as before on these new groups. The results are represented below.            
+                </p>
+                    <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/tablelou.png" width = "650" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+
+                </p>
+                
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/lou3.png" width = "650" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    Even if overall collaborations does not have an impact on the popularity of a Youtuber we can see that it is not true for all bins. While for most collaborations don't have an impact, for small Youtubers (that don't make a lot of views) this result is not true anymore. For those who have less than 2420.333 views in average the Welch t-test suggests that Youtubers that collaborate will tend to have more views than those who don't.
+                </p>
+                <p>
+                    Another result is that for really big Youtubers, collaborations also have an impact but a negative one. One possible explanation could be that when popular YouTubers are collaborating with other popular channels, the shared community of both channels will only watch one of the videos, which can result in less views for one of them. A more intricate investigation should be required to understand this effect but goes outside the scope of our study.
+                </p>
+
+                
             </article>
         </main>
 
         <main id="content" class="content" role="main">
             <article class="post">
                 
-                <h1> Collaboration Impact Analysis </h1>
-
-                <h2>Bla1</h2>
-
+                <h1> Analyzing the Impact: Before and After Collaborating </h1>
                 <p>
-                    bla
+                    To understand more in detail the impact of collaborations on a channel, we will look at indicators of channel success such as channel viewership and subscriber count. We can get an idea of viewership and subscriber growth trends from the sample of 9 channels plotted below. As we can see, there are occasional periods of growth in views/subscribers of a channel followed by periods of milder growth/plateau for a few channels. The number of views and subscribers are plotted on a log scale to accommodate for viral channels. 
                 </p>
-
-
-                <h2>Bla2</h2>
                 <p>
-                    bla
+                    <img src="/ada-2023-website-adacadabra/assets/images2/timeseries_views_subs.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
                 </p>
-
-                
-            </article>
-        </main>
-
-        <main id="content" class="content" role="main">
-            <article class="post">
-                
-                <h1> Effect of Collaborations on Channel Growth </h1>
-
-                <h2>Bla1</h2>
-
                 <p>
-                    bla
+                    Next we have graphs of the timeseries of the gain in views/subscribers per week for the sample channels.
                 </p>
-
-
-                <h2>Bla2</h2>
                 <p>
-                    bla
+                    <img src="/ada-2023-website-adacadabra/assets/images2/timeseries_delta.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
                 </p>
-
+                <p>
+                    Given the many fluctuations in the number of views obtained by a channel in a week, we can zoom into how collaborations may influence the number of views a channel obtains in a week. Below is a timeseries graph of the number of weekly views obtained by the channel “BrandonDoesEverythin…” overlaid with the weeks when the channel has engaged in collaboration. As the channel collaborates on a rather regular frequency, this graph does not provide much information about how collaborations may have influenced weekly views. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/delta_views_collab_example.png" width = "450" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    Thus, we plot the same kind of graph for a popular gaming channel: PewDiePie. There is a lack of channel weekly view data in our data set before 2017. However, we can see that PewDiePie collaborated rather frequently with other channels before the large spike in weekly views at the end of 2016. Afterwards, there was a long period of time between 2017 and 2018 during which PewDiePie did not collaborate with other channels. We can see that during this period, the weekly views on PewDiePie’s channel seems to be relatively steady. At the beginning of 2018, PewDiePie occasionally collaborates with other channels again. The number of weekly channel views obtained also seems to increase after the channel begins collaborating again. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/pdp_deltaviews_collab.png" width = "450" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    Next, we will examine the collaborations that 9 sample channels engage in. There does not seem to be very strong correlation between collaboration and weekly viewership of a channel from these graphs. Thus, the relationship between collaborations and weekly channel views warrants more investigation. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/deltaviews_collab_sample.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    We proceed to plot the same type of graph for a random sample of the 10 most popular channels. These channels seem to engage in collaborations, although to a rather limited scale. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/most_pop_delta_collab.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    We will run some regression analysis to model the impact of the number of collaborations a channel engages in and the number of subscribers a channel obtains. From the regression model below, we can see that since the p-value of the number of collaborations variable is < 0, the number of collaborations that a channel engages in has statistically significant influence on the number of subscribers of a channel. However, the r-squared value of the model is only 0.008 which implies that a model is insufficient in explaining the variance of the number of channel subscribers. Thus, there is reason to believe that the number of subscribers to a channel is likely influenced by many other factors apart from the number of collaborations that the channel engages in. Based on the linear regression model, a unit increase in the number of collaborators that the channel engages in can increase the number of subscribers of a channel by 6.69 subscribers. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/jia1.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    Next, we will examine the relationship between the lifespan of a youtube channel and the collaborations it engages in. 
+                </p>
+                <p>
+                    First, we will define a channel to be dead when the number of views it obtains in a month is less than 20% of its subscriber count. From there we can obtain the lifespan of a channel. One point to note for this is that due to the dataset only containing data up to July of 2019, there is a limit to the maximum lifespan a channel may have. Below is a graph of the distribution of the lifespan of youtube channels in the dataset. We can see that this distribution seems to be bimodal with the two largest proportion of channels having lifespan either close to 0 or around 35 to 40 months.  
+                <p/>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/lifespan_dist.png" width = "450" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    Next, we shall run some regression analysis to model the relationship between lifespan of channels and the number of collaborations it engages in. 
+                </p>
+                <p>
+                    From the linear regression results below, the number of collaborations that a channel engages in has a statistically significant influence, at the 5% significant level, on the lifespan of the channel as it has a p-value < 0.05. However, this model with number of collaborations as the only factor influencing channel lifespan does not explain the variance in channel lifespan very well since the r-squared value is only 0.06. Thus there is reason to believe that several other factors may influence the lifespan of the channel. From this model, we can conclude that a unit increase in the number of collaborations a channel engages in on average increases the lifespan of the channel by 6.88 * 10^-5 months. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/jia2.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    A potential confounding factor in the relationship between the number of collaborations of a channel and the number of videos a channel uploads. A channel which uploads more videos may have invested more resources into their youtube channels and are thus more likely to be willing to engage in a collaboration. When more videos are uploaded, it is likely that the channel is releasing new content for a longer period of time. New content may be able to sustain viewership with the aid of services like youtube notifications. Thus, we will model the relationship between lifespan and number of collaborations again with the number of videos a channel has uploaded as a confounding variable. 
+                </p>
+                <p>
+                    <img src="/ada-2023-website-adacadabra/assets/images2/jia3.png" width = "700" alt="Image (input)" style="display: block;
+                        margin-left: auto;margin-right: auto;">
+                </p>
+                <p>
+                    The new model is able to explain the variance in channel lifespan much better as seen from the much higher r-squared value of 0.034. Both the number of videos uploaded by a channel and the interaction term between number of videos uploaded and the number of collaborations the channel engages in are statistically significant, at the 5% significance level, in influencing the lifespan of the channel as the p-value of these variables are all < 0.05. The above regression model tells us that a unit increase in the number of collaborations that a channel engages in and a unit increase in the number of videos of a channel results in an increase of (6.77*10^-5 + 0.013 - 3.80*10^-9) months of the channel’s lifespan. 
+                </p>
+                <p>
+                    Thus, from the above analysis, we can see that although the impact of collaborations on a channel’s popularity is statistically significant, it is only one of the many factors influencing channel growth. 
+                </p>
 
             </article>
         </main>
@@ -156,7 +315,15 @@
                 
                 <h1> Conclusion </h1>
                 <p>
-                    bla
+                    In summary, the study looks at YouTube collaborations within the gaming community, revealing a complex network of over 160,000 connections. While collaborations correlate positively with subscriber numbers, nuanced effects are observed - smaller channels benefit, while larger channels may experience negative impacts. Regression models suggest that collaborations influence subscriber numbers and channel lifetimes, but are only one of many factors determining channel growth. The study highlights the complex role of collaborations in the dynamic landscape of the YouTube gaming community.
+                </p>
+                <h2> Limitations </h2>
+                <p>
+                    However, this study is not without its limitations. The use of the Youniverse dataset, with its inherent constraints, raises questions about the generalizability of the results to the entire YouTube gaming landscape. In addition, the temporal scope of the analysis may not capture recent changes in platform dynamics, requiring some caution in extrapolating results to today. The study recognizes that channel growth is a complex interplay of various factors, and that collaborations represent only one facet of this complex ecosystem.
+                </p>
+                <h2> Ethical risks </h2>
+                <p>
+                    Ethical considerations are central in this exploration of YouTube collaborations. Although the analysis uses publicly available data to protect individual privacy, it is difficult to accurately attribute all collaborations based on video descriptions alone. The generalization of results must be approached with caution, given the diversity of content and creators. In addition, ongoing ethical vigilance is essential to ensure that the study remains respectful of creators' autonomy and avoids unintentional misrepresentation of their collaborative efforts on the platform.
                 </p>
 
             </article>
